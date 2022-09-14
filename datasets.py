@@ -281,7 +281,7 @@ class customDataset(Dataset):
         for sub in new_image_dict:
             random.shuffle(new_image_dict[sub])
 
-        sayac = 0
+        count = 0
         classes = [*new_image_dict]
 
         total_batches = []
@@ -322,11 +322,11 @@ class customDataset(Dataset):
                     tempi.append(j[1])
             if len(tempi) == self.batch_size:
                 total_batches.append(batch)
-                sayac +=1
+                count +=1
                 batch = []
                 tempi = []
                 temp = []
-            if sayac == 181:
+            if count == (len(self.image_dict) // self.batch_size):
                 finished = 1
 
         random.shuffle(total_batches)
