@@ -229,7 +229,7 @@ def evaluate_query_and_gallery_dataset(LOG, query_dataloader, gallery_dataloader
         if LOG is not None:
             if save:
                 aux.set_checkpoint(model, opt, LOG.progress_saver, LOG.prop.save_path+'/checkpoint.pth.tar')
-                aux.recover_closest_inshop(query_feature_matrix_all, gallery_feature_matrix_all, query_image_paths, gallery_image_paths, LOG.prop.save_path+'/sample_recoveries_'+str(epoch)+'.png')
+                aux.recover_closest(query_feature_matrix_all, gallery_feature_matrix_all, query_image_paths, gallery_image_paths, LOG.prop.save_path+'/sample_recoveries_'+str(epoch)+'.png')
             # Update logs.
             LOG.log('val', LOG.metrics_to_log['val'], [epoch, np.round(time.time()-start), NMI, F1]+recall_at_ks)
 
