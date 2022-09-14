@@ -38,7 +38,6 @@ parser.add_argument('--fc_lr_mul', default=5, type=float, help='OPTIONAL: Multip
                                                                ' by this value.''If set to 0, the embedding layer '
                                                                'shares the same learning rate.')
 parser.add_argument('--n_epochs', default=50, type=int, help='Number of training epochs.')
-parser.add_argument('--kernels', default=0, type=int, help='Number of workers for pytorch dataloader.')
 parser.add_argument('--bs', default=256, type=int, help='Mini-Batchsize to use.')
 parser.add_argument('--samples_per_class', default=4, type=int, help='Number of samples in one class drawn before '
                                                                      'choosing the next class. Set to >1 for losses'
@@ -67,7 +66,7 @@ parser.add_argument('--embed_dim', default=512, type=int, help='Embedding dimens
                                                                ' dim=512 for GoogLeNet.')
 parser.add_argument('--embed_init', default='default', type=str, help='Embedding layer initialization method:'
                                                                       '{default,kaiming_normal,kaiming_uniform,normal}')
-parser.add_argument('--arch', default='convnext', type=str, help='Network backend choice: resnet50, googlenet.')
+parser.add_argument('--arch', default='resnet50', type=str, help='Network backend choice: resnet50, convnext.')
 parser.add_argument('--resize256', action='store_true', help='If added, resize training images to 256x256 first.')
 parser.add_argument('--ft_batchnorm', action='store_true', help='If added, BatchNorm layers will '
                                                                 'be un-frozen for finetuning.')
@@ -127,19 +126,9 @@ print('{} Setup for {} with {} sampling on {} complete with #weights: {}'.format
                                                                                  aux.gimme_params(model)))
 # Push to Device
 _ = model.to(opt.device)
-# Place trainable parameter in list of parameters to train:
-# if 'fc_lr_mul' in vars(opt).keys() and opt.fc_lr_mul!=0:
-#    all_but_fc_params = filter(lambda x: 'last_linear' not in x[0],model.named_parameters())
-#    fc_params         = model.model.last_linear.parameters()
-#    to_optim          = [{'params':all_but_fc_params,'lr':opt.lr,'weight_decay':opt.decay},
-#                         {'params':fc_params,'lr':opt.lr*opt.fc_lr_mul,'weight_decay':opt.decay}]
-#    print(to_optim)
-#    pdb.set_trace()
-# else:
-#    to_optim   = [{'params':model.parameters(),'lr':opt.lr,'weight_decay':opt.decay}]
+
 to_optim = model.to_optim(opt)
 print(model)
-#to_optim = [{'params':model.parameters(),'lr':opt.lr,'weight_decay':opt.decay}]
 
 """============================================================================"""
 # DATALOADER SETUPS #
