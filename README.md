@@ -79,5 +79,5 @@ Feyza Yavuz and Sinan Kalkan, "Segment Augmentation and Differentiable Ranking f
 
 ## Contact
 
-Feyza Yavuz, E-mail: <>
+Feyza Yavuz, E-mail: <feyza.yavuz@metu.edu.tr>
 
