@@ -1,3 +1,5 @@
+# repo originally forked from https://github.com/Confusezius/Deep-Metric-Learning-Baselines
+
 # LIBRARIES #
 import warnings
 from pathlib import Path
