@@ -1,3 +1,5 @@
+# repo originally forked from https://github.com/Confusezius/Deep-Metric-Learning-Baselines
+
 import warnings
 warnings.filterwarnings("ignore")
 
