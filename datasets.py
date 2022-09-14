@@ -1,4 +1,6 @@
-# LIBRARIES #
+# repo originally forked from https://github.com/Confusezius/Deep-Metric-Learning-Baselines
+
+#LIBRARIES #
 import warnings
 import numpy as np
 import pandas as pd
