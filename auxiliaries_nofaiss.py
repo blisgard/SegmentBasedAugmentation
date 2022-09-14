@@ -22,7 +22,7 @@ def args2exp_name(args):
     return exp_name
 
 
-def recover_closest_inshop(query_feature_matrix_all, gallery_feature_matrix_all, query_image_paths, gallery_image_paths,
+def recover_closest(query_feature_matrix_all, gallery_feature_matrix_all, query_image_paths, gallery_image_paths,
                            save_path, n_image_samples=10, n_closest=10):
     """
     Provide sample recoveries.
